@@ -14,6 +14,7 @@ for led in leds:
     pi.pinMode(led, pi.OUTPUT)
     pi.softPwmCreate(led, 0, 100)
     pi.softPwmWrite(led, 0)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
 
 def setLedImpl(r, g, b):
@@ -24,11 +25,11 @@ def setLedImpl(r, g, b):
 def setLed(x):
     setLedImpl(100*x[0], 100*x[1], 100*x[2])
 
+setLed([0.5, 0.5, 0.])
 while True:
-    T = 1.0
-    n = 60
+    T = 0.01
+    n = 2
     for i in range(n):
-        setLed(cs.hsv_to_rgb(i/n, 0.5, 0.3))
+        GPIO.output(12, GPIO.HIGH if i==0 else GPIO.LOW)
         time.sleep(T/n)
-        GPIO.output(12, GPIO.HIGH if (i%2)==0 else GIPO.LOW)
 
