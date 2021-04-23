@@ -4,3 +4,6 @@
 # How to use?
 - まだないよ！
 
+# Test
+- lchika.py
+  - lチカする
