@@ -1,5 +1,60 @@
-# 数理実験 ラズパイ 
+# 数理実験 サクサクラズベリーパイを焼こう
 [hackmd](https://hackmd.io/w4cP7qvFRj2dxN_lsWAkYw?view)
+## 4/23 第三回
+### 進捗記録
+#### ハード班
+- LEDが光った
+    - まずLチカをした
+        - [ここを参照](https://github.com/OptMist-Tokyo/experiment2021/blob/main/firmware/test/lchika.py)
+    - 次に、PWMで連続的に色を設定できるようにした
+        - [ここを参照](https://github.com/OptMist-Tokyo/experiment2021/blob/main/firmware/test/pwm.py)
+    - さらにPWM×ダイナミック制御を試した
+        - ソフトウェアPWMの仕様がよくわかんないが、うまく行かなかった
+        - [ここを参照](https://github.com/OptMist-Tokyo/experiment2021/blob/main/firmware/test/dynamic_control.py)
+    - LEDの光らせかたのパターンほしい
+- ポンプ，発泡スチロール，発泡スチロールカッター，水槽のめどが立った
+    - 残り必要なもの・・・防水加工のもろもろ，デコグッズ
+        - 防水加工はアクリル樹脂で
+        - デコグッズ 石を敷き詰めたい
+- 排水をどうするか問題
+    - 噴水中の水量を適量に保ちたい・・・下から排水ではなく，オーバーフローを処理する形で？
+    - 供給と同じ数（出力）のポンプを用意して排水する？
+- LEDの防水どうするか問題
+    - アクリル樹脂による防水で固めればなんとかなる？
+- ポンプの出力は届いてみないとわからない
+#### ソフト班
+- ラズパイ上にPython環境構築done
+- マイクのセッティング録音再生OK
+- 参考:https://blog.natade.net/2019/08/27/raspberry-pi-%E5%86%8D%E7%94%9F-%E9%8C%B2%E9%9F%B3-%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9/
+- [セットアップのコマンドはgitのここを参考に](https://github.com/OptMist-Tokyo/experiment2021/blob/main/software/setup.sh)
+<!--
+gitにコピペしました
+- pip3 install -r requirements.txt
+pip3 install opencv-python
+pip3 install scipy
+sudo apt install libatlas-base-dev
+pip3 install pyAudioAnalysis
+pip3 install matplotlib
+pip3 install eyed3
+pip3 install pydub
+pip3 install tqdm
+pip3 install sklearn
+pip3 install plotly
+pip3 install pyaudio
+sudo apt-get install libportaudio2
+
+sudo touch /etc/modprobe.d/alsa-base.conf
+sudo vim /etc/modprobe.d/alsa-base.conf
+
+options snd slots=snd_usb_audio,and_bcm2835
+options snd_usb_audio index=0
+options snd_bcm2835 index=1
+
+sudo reboot
+
+amixer -D hw:1 sset Mic 100%
+-->
+
 ## 4/16 第二回
 ### 前回の振り返り
 - ドローン
