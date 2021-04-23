@@ -1,7 +1,8 @@
 echo "alias pip='pip3'" >> ${HOME}/.bashrc
 echo "alias python='python3'" >> ${HOME}/.bashrc
 
-pip3 install -r requirements.txt
+git submodule update --init --recursive
+pip3 install -r color_your_music_mood/requirements.txt
 pip3 install opencv-python
 pip3 install scipy
 sudo apt install libatlas-base-dev
