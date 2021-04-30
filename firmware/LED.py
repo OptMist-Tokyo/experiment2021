@@ -6,24 +6,27 @@ import colorsys as cs
 class LED:
     def __init__(self, red, green, blue):
         self.leds = [red, green, blue]
-        pi.pinMode(led, pi.OUTPUT)
-        for led in leds:
+        pi.wiringPiSetupGpio()
+        for led in self.leds:
+            pi.pinMode(led, pi.OUTPUT)
             pi.softPwmCreate(led, 0, 100)
             pi.softPwmWrite(led, 0)
-        GPIO.setup(12, GPIO.OUT)
 
-    def impl(self, r, g, b):
-        pi.softPwmWrite(red, int(r))
-        pi.softPwmWrite(green, int(g))
-        pi.softPwmWrite(blue, int(b))
+    def impl(self, rgb):
+        for (led, pulse) in zip(self.leds, rgb):
+            pi.softPwmWrite(led, int(pulse))
+
+    def setRGB(self, rgb):
+        self(rgb[0], rgb[1], rgb[2])
 
     def __call__(self, r, g, b):
-        # rgbをそれぞれ0.0~1.0で渡す
-        self.softPwmWrite(red, 100*r, 100*g, 100*b)
+        # rgbをそれぞれ0~255までで表す
+        self.impl([(100*ratio/255) for ratio in [r,g,b]])
 
 
 if __name__ == '__main__':
-    led = LED(21, 20, 16)
-    led(0.5, 0.3, 0.0)
+    led = LED(17, 27, 22)
+    led(120, 120, 120)
     time.sleep(1.0)
+
 
