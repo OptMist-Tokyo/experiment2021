@@ -16,13 +16,17 @@ class LED:
         for (led, pulse) in zip(self.leds, rgb):
             pi.softPwmWrite(led, int(pulse))
 
+    def setRGB(self, rgb):
+        self(rgb[0], rgb[1], rgb[2])
+
     def __call__(self, r, g, b):
-        # rgbをそれぞれ0.0~1.0で渡す
-        self.impl([100*r, 100*g, 100*b])
+        # rgbをそれぞれ0~255までで表す
+        self.impl([(100*ratio/255) for ratio in [r,g,b]])
 
 
 if __name__ == '__main__':
-    led = LED(21, 26, 16)
-    led(0.5, 0.3, 0.0)
+    led = LED(17, 27, 22)
+    led(120, 120, 120)
     time.sleep(1.0)
+
 
