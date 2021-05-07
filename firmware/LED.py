@@ -3,10 +3,10 @@ import wiringpi as pi
 import time
 import colorsys as cs
 
+pi.wiringPiSetupGpio()
 class LED:
     def __init__(self, red, green, blue):
         self.leds = [red, green, blue]
-        pi.wiringPiSetupGpio()
         for led in self.leds:
             pi.pinMode(led, pi.OUTPUT)
             pi.softPwmCreate(led, 0, 100)
