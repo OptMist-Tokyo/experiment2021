@@ -58,6 +58,8 @@ class udprecv():
             if invalid:
                 print('[[WARNING]] invalid command')
             
+            time.sleep(0.01)
+            
 if __name__ == '__main__':
     udp = udprecv([18, 16, 25], [5, 4, 22], 19, 26)
     udp.recv()
