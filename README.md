@@ -8,6 +8,8 @@
 - `diary.md` というファイルを作り，各回の最後にその日行った内容をまとめ，日誌として記録してください．（日毎に別ファイルを作る必要はありません）
 - この `README.md` は適宜編集して構いません．
 
+## リポジトリ構成
+
 ## 過去の4年実験
 - 2020: 退屈な座席決めはPythonにやらせよう (https://github.com/OptMist-Tokyo/experiment2020)
 - 2019: MEIPY でさくさく入ろう控室 (https://github.com/OptMist-Tokyo/experiment2019)
