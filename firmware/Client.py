@@ -45,6 +45,25 @@ class udpsend():
             self.p0(power)
             self.p1(100-power)
 
+    def gpump(self, start, end, T):
+        dt = 0.1
+        n = int(T/dt)
+        self.pump(start)
+        for i in range(n):
+            time.sleep(dt)
+            power = int(start + (i+1)/n * (end-start))
+            self.pump(power)
+
+    def cpump(self, start, end, T):
+        dt = 0.1
+        n = int(T/dt)
+        self.pump(start)
+        for i in range(n):
+            time.sleep(dt)
+            power = int(start + (i+1)/n * (end-start))
+            self.p0(power)
+            self.p1(100-power)
+
     def stop(self):
         self.send("stop")
 
@@ -53,4 +72,3 @@ if __name__ == '__main__':
     if len(sys.argv) >= 4:
         r,g,b = [int(x) for x in sys.argv[1:4]]
         send.led(r, g, b)
-

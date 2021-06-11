@@ -21,12 +21,12 @@ class udprecv():
         self.pump1 = PUMP(pump1)
         self.pump2 = PUMP(pump2)
 
-    def led(self, rgb):
+    def led(self, rgb)
         r,g,b = [int(x) for x in rgb]
         self.led1(r, g, b)
         self.led2(r, g, b)
 
-    def pump(self, power):
+    def pump(self, power)
         self.pump1(power)
         self.pump2(power)
 
@@ -57,8 +57,6 @@ class udprecv():
                 invalid = False
             if invalid:
                 print('[[WARNING]] invalid command')
-            
-            time.sleep(0.01)
             
 if __name__ == '__main__':
     udp = udprecv([18, 16, 25], [5, 4, 22], 19, 26)
