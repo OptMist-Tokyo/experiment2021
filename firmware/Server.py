@@ -2,6 +2,7 @@ from socket import *
 import time
 from LED import LED
 from PUMP import PUMP
+import numpy as np
 
 class udprecv():
     def __init__(self, led1, led2, pump1, pump2):
@@ -20,6 +21,15 @@ class udprecv():
         self.pump1 = PUMP(pump1)
         self.pump2 = PUMP(pump2)
 
+    def led(self, rgb)
+        r,g,b = [int(x) for x in rgb]
+        self.led1(r, g, b)
+        self.led2(r, g, b)
+
+    def pump(self, power)
+        self.pump1(power)
+        self.pump2(power)
+
     def recv(self):
         while True:
             data, addr = self.udpServSock.recvfrom(self.BUFSIZE)
@@ -32,31 +42,19 @@ class udprecv():
                 invalid = True
             elif cmd == 'stop':
                 print('  stop all devices')
-                self.led1(0, 0, 0)
-                self.led2(0, 0, 0)
-                self.pump1(0)
-                self.pump2(0)
+                self.led(0, 0, 0)
+                self.pump(0)
                 invalid = False
             elif cmd[0] == 'l':
-                r,g,b = [int(x) for x in (cmd.split(":")[-1]).split(",")]
-                if cmd[1] == '0':
-                    self.led1(r, g, b)
-                    print(f'  set led0 = {[r,g,b]}')
-                    invalid = False
-                elif cmd[1] == '1':
-                    self.led2(r, g, b)
-                    print(f'  set led1 = {[r,g,b]}')
-                    invalid = False
+                rgb = np.array([int(x) for x in (cmd.split(":")[-1]).split(",")])
+                self.led(rgb)
+                print(f'  set led = {[r,g,b]}')
+                invalid = False
             elif cmd[0] == 'p':
                 power = int(cmd.split(":")[-1])
-                if cmd[1] == '0':
-                    self.pump1(power)
-                    print(f'  set pump0 = {power}')
-                    invalid = False
-                elif cmd[1] == '1':
-                    self.pump2(power)
-                    print(f'  set pump1 = {power}')
-                    invalid = False
+                self.pump(power)
+                print(f'  set pump0 = {power}')
+                invalid = False
             if invalid:
                 print('[[WARNING]] invalid command')
             

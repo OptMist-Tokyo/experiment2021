@@ -16,9 +16,9 @@ class PUMP:
             GPIO.output(self.pump, GPIO.LOW)
 
 if __name__ == '__main__':
-    pump = PUMP(12)
+    pump = PUMP(2)
     
     for i in range(4):
         pump(i%2)
         time.sleep(0.5)
-
+    pump(0)
