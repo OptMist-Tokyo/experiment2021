@@ -32,6 +32,9 @@ class udpsend():
     def p1(self, power):
         self.send(f'p1: {power}')
 
+    def stop(self):
+        self.send("stop")
+
 if __name__ == '__main__':
     send = udpsend()
 
