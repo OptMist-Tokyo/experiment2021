@@ -21,12 +21,12 @@ class udprecv():
         self.pump1 = PUMP(pump1)
         self.pump2 = PUMP(pump2)
 
-    def led(self, rgb)
+    def led(self, rgb):
         r,g,b = [int(x) for x in rgb]
         self.led1(r, g, b)
         self.led2(r, g, b)
 
-    def pump(self, power)
+    def pump(self, power):
         self.pump1(power)
         self.pump2(power)
 
