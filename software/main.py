@@ -25,6 +25,7 @@ sys.path.append(firmware_path)
 import colorsys as cs
 import time
 from LED import LED
+from Client import udpsend
 
 global fs
 global all_data
@@ -135,9 +136,8 @@ def record_audio(block_size, devices, use_yeelight_bulbs=False, fs=8000):
     [clf_valence, mu_valence, std_valence, class_names_valence,
      mt_win_va, mt_step_va, st_win_va, st_step_va, _] = \
         aT.load_model("color_your_music_mood/valence")
-    led = LED(17, 27, 22)
-    led(255, 255, 255)
-    time.sleep(1.0)
+    udp = udpsend()
+    udp.pump(1)
     while 1:
         block = stream.read(mid_buf_size)
         count_b = len(block) / 2
@@ -220,7 +220,8 @@ def record_audio(block_size, devices, use_yeelight_bulbs=False, fs=8000):
                # if b:
                         # attention: color is in bgr so we need to invert:
                # led = LED(17, 27, 22)
-                led.setRGB([int(color[2]), int(color[1]), int(color[0])])
+                rgb = [int(color[2]), int(color[1]), int(color[0])]
+                udp.led(rgb)
 
             cv2.waitKey(10)
             count += 1
