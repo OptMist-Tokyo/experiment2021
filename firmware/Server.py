@@ -30,6 +30,13 @@ class udprecv():
             
             if len(cmd) < 2:
                 invalid = True
+            elif cmd == 'stop':
+                print('  stop all devices')
+                self.led1(0, 0, 0)
+                self.led2(0, 0, 0)
+                self.pump1(0)
+                self.pump2(0)
+                invalid = False
             elif cmd[0] == 'l':
                 r,g,b = [int(x) for x in (cmd.split(":")[-1]).split(",")]
                 if cmd[1] == '0':
