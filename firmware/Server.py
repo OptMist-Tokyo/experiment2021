@@ -40,7 +40,7 @@ class udprecv():
                     self.led2(r, g, b)
                     print(f'  set led1 = {[r,g,b]}')
                     invalid = False
-            elif cmd[1] == 'p':
+            elif cmd[0] == 'p':
                 power = int(cmd.split(":")[-1])
                 if cmd[1] == '0':
                     self.pump1(power)
