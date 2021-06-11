@@ -21,12 +21,12 @@ class udprecv():
         self.pump1 = PUMP(pump1)
         self.pump2 = PUMP(pump2)
 
-    def led(self, rgb)
+    def led(self, rgb):
         r,g,b = [int(x) for x in rgb]
         self.led1(r, g, b)
         self.led2(r, g, b)
 
-    def pump(self, power)
+    def pump(self, power):
         self.pump1(power)
         self.pump2(power)
 
@@ -48,7 +48,7 @@ class udprecv():
             elif cmd[0] == 'l':
                 rgb = np.array([int(x) for x in (cmd.split(":")[-1]).split(",")])
                 self.led(rgb)
-                print(f'  set led = {[r,g,b]}')
+                print(f'  set led = {rgb}')
                 invalid = False
             elif cmd[0] == 'p':
                 power = int(cmd.split(":")[-1])
