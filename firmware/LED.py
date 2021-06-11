@@ -25,8 +25,13 @@ class LED:
 
 
 if __name__ == '__main__':
-    led = LED(17, 27, 22)
-    led(120, 120, 120)
-    time.sleep(1.0)
-
-
+    led = LED(5, 4, 22)
+    while True:
+        led(100, 0, 0)
+        time.sleep(1.0)
+        led(0, 100, 0)
+        time.sleep(1.0)
+        led(0, 0, 100)
+        time.sleep(1.0)
+        led(0, 0, 0)
+        time.sleep(1.0)
