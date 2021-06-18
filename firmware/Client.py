@@ -1,4 +1,5 @@
 from socket import *
+import time
 
 class udpsend():
 def __init__(self, SrcPort=50002, SrcIP='127.0.0.1'):
@@ -23,6 +24,25 @@ def __init__(self, SrcPort=50002, SrcIP='127.0.0.1'):
 
     def pump(self, power):
         self.send(f'pump: {power}')
+
+    def gpump(self, start, end, T):
+        dt = 0.1
+        n = int(T/dt)
+        self.pump(start)
+        for i in range(n):
+            time.sleep(dt)
+            power = int(start + (i+1)/n * (end-start))
+            self.pump(power)
+
+    def cpump(self, start, end, T):
+        dt = 0.1
+        n = int(T/dt)
+        self.pump(start)
+        for i in range(n):
+            time.sleep(dt)
+            power = int(start + (i+1)/n * (end-start))
+            self.p0(power)
+            self.p1(100-power)
 
     def stop(self):
         self.send("stop")

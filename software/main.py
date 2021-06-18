@@ -137,7 +137,7 @@ def record_audio(block_size, devices, use_yeelight_bulbs=False, fs=8000):
      mt_win_va, mt_step_va, st_win_va, st_step_va, _] = \
         aT.load_model("color_your_music_mood/valence")
     udp = udpsend()
-    udp.pump(1)
+    udp.pump(100)
     while 1:
         block = stream.read(mid_buf_size)
         count_b = len(block) / 2
@@ -212,7 +212,7 @@ def record_audio(block_size, devices, use_yeelight_bulbs=False, fs=8000):
                                         int(color[2])), -1)
             emo_map_img_2 = cv2.circle(emo_map_img_2, (x, y),
                                        radius, (255, 255, 255), 2)
-            cv2.imshow('Emotion Color Map', emo_map_img_2)
+            #cv2.imshow('Emotion Color Map', emo_map_img_2)
 
             # set yeelight bulb colors
             if use_yeelight_bulbs:
