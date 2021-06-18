@@ -1,24 +1,23 @@
-import RPi.GPIO as GPIO
 import wiringpi as pi
 import time
 import colorsys as cs
 
-GPIO.setmode(GPIO.BCM)
+pi.wiringPiSetupGpio()
 class PUMP:
     def __init__(self, pump):
         self.pump = pump
-        GPIO.setup(self.pump, GPIO.OUT)
+        pi.pinMode(self.pump, pi.OUTPUT)
+        pi.softPwmCreate(self.pump, 0, 100)
+        pi.softPwmWrite(self.pump, 0)
 
-    def __call__(self, onoff):
-        if bool(onoff) is True:
-            GPIO.output(self.pump, GPIO.HIGH)
-        else:
-            GPIO.output(self.pump, GPIO.LOW)
+    def __call__(self, power):
+        pi.softPwmWrite(self.pump, power)
 
 if __name__ == '__main__':
     pump = PUMP(2)
     
     for i in range(4):
-        pump(i%2)
-        time.sleep(0.5)
+        for j in range(10):
+            pump(10*(j+1))
+            time.sleep(0.1)
     pump(0)

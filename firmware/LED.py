@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 import wiringpi as pi
 import time
 import colorsys as cs
