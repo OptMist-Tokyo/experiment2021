@@ -1,5 +1,6 @@
 from socket import *
 import time
+import sys
 
 class udpsend():
 def __init__(self, SrcPort=50002, SrcIP='127.0.0.1'):
@@ -48,6 +49,8 @@ def __init__(self, SrcPort=50002, SrcIP='127.0.0.1'):
         self.send("stop")
 
 if __name__ == '__main__':
-    send = udpsend(50002)
-
+    send = udpsend(50002, SrcIP='172.17.0.1')
+    if len(sys.argv) >= 4:
+        r,g,b = [int(x) for x in sys.argv[1:4]]
+        send.led(r, g, b)
 
