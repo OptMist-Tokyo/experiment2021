@@ -19,7 +19,6 @@ def index():
     <a href="http://{ip}:{port}/led/afdfe4">水</a><br>\n\
     <a href="http://{ip}:{port}/led/f15a22">橙</a><br>'
 
-
 @ app.route('/led/<RGB>')
 def led(RGB='0xffffff'):
     red = int(RGB[:2], 16)
@@ -32,4 +31,3 @@ def led(RGB='0xffffff'):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=False)
-
