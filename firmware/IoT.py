@@ -29,7 +29,7 @@ def led(RGB='0xffffff'):
     cmd = ' '.join(["python3", "Client.py", str(red), str(green), str(blue)])
     sp.run(cmd, shell=True)    
     print(cmd)
-    return page
+    return f'<font color="#{RGB}">この色にしました</font><br>\n' + page
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=False)
